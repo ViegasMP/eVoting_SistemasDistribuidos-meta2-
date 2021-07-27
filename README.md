@@ -1,6 +1,7 @@
 # eVoting Sistemas Distribuidos (META 2) 
 
 SD LEI UC 2020/2021
+(buscar pastas "uc" e "com" em src do meta2.zip)
 
 # Resumo
 O voto eletrónico consiste na obtenção, armazenamento e contagem de votos, por via eletró- nica, relativos a um processo eleitoral. Numa eleição apresentam-se candidatos e a escolha de cada votante deverá ser secreta, sendo que cada eleitor poderá votar apenas uma vez, e a con- tagem de votos deverá estar de acordo com as escolhas realmente feitas pelos votantes. Este projeto consiste em criar um sistema de voto eletrónico para eleger as direções de organismos da Universidade de Coimbra.
