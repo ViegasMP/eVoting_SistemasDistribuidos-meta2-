@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- The core configuration file for the framework is the default (struts.xml) file
+and should reside on the classpath of the webapp (generally /WEB-INF/classes). -->
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- devMode equals debug information and reload everything for every request -->
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.ui.theme" value="simple" />
+
+    <package name="hey" extends="struts-default">
+	    <default-action-ref name="index" />
+
+	    <global-results>
+		    <result name="error">/error.jsp</result>
+	    </global-results>
+
+	    <!-- all exceptions not caught by the application will lead to error.jsp -->
+	    <global-exception-mappings>
+		    <exception-mapping exception="java.lang.Exception" result="error" />
+	    </global-exception-mappings>
+
+	    <!-- 'index' action leads to the view provided by index.jsp -->
+        <action name="index">
+            <result>/index.jsp</result>
+        </action>
+
+        <!-- 'button1' action leads to the view provided by register.jsp if connected to RMIServer
+         or leads to the view provided by error.jsp if something goes wrong-->
+        <action name="button1" class="hey.action.LoadInfoAction" method="execute">
+            <result name="success">/register.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <!-- 'register' action leads to the view provided by index.jsp if user is registered successfully
+         or leads to the view provided by register.jsp if something goes wrong -->
+        <action name="register" class="hey.action.RegisterAction" method="execute">
+            <result name="success">index.jsp</result>
+            <result name="error">register.jsp</result>
+        </action>
+
+        <!-- 'fbconnect' action leads to the view provided by vote.jsp if user successfully logged in
+        or leads to the view provided by register.jsp if it is not registered-->
+        <action name="fbconnect" class="hey.action.LoginFB" method="execute">
+            <result name="success">/authFB.jsp</result>
+            <result name="error">/index.jsp</result>
+        </action>
+
+        <!-- 'button2' action leads to the view provided by createElection.jsp -->
+        <action name="button2">
+            <result>/createElection.jsp</result>
+        </action>
+
+        <!-- 'studentCouncil' action leads to the view provided by studentCouncil.jsp if connected to RMIServer
+         or leads to the view provided by error.jsp if something goes wrong-->
+        <action name="studentCouncil" class="hey.action.LoadInfoAction" method="execute">
+            <result name="success">/studentCouncil.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <!-- 'studentCouncil' action leads to the view provided by index.jsp if election is created successfully
+        or leads to the view provided by studentCouncil.jsp if something goes wrong-->
+        <action name="studentCouncilAction" class="hey.action.StudentCEAction" method="execute">
+            <result name="success">/index.jsp</result>
+            <result name="error">/studentCouncil.jsp</result>
+        </action>
+
+        <!-- 'generalCouncil' action leads to the view provided by generalCouncil.jsp-->
+        <action name="generalCouncil">
+            <result>/generalCouncil.jsp</result>
+        </action>
+
+        <!-- 'studentCouncil' action leads to the view provided by index.jsp if election is created successfully
+        or leads to the view provided by generalCouncil.jsp if something goes wrong-->
+        <action name="generalCouncilAction" class="hey.action.GeneralCEAction" method="execute">
+            <result name="success">/index.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <!-- 'button3' action leads to the view provided by altCreatElection.jsp-->
+        <action name="button3">
+            <result>/altCreatElection.jsp</result>
+        </action>
+
+        <!-- 'altStudentCouncil' action leads to the view provided by altStudentCouncil.jsp if connected to RMIServer
+         or leads to the view provided by index.jsp if something goes wrong-->
+        <action name="altStudentCouncil" class="hey.action.LoadInfoAction" method="execute">
+            <result name="success">/altStudentCouncil.jsp</result>
+            <result name="error">/index.jsp</result>
+        </action>
+
+        <!-- 'altStudentCouncilAction' action leads to the view provided by index.jsp if election is altered successfully
+        or leads to the view provided by error.jsp if something goes wrong-->
+        <action name="altStudentCouncilAction" class="hey.action.AltStudentCEAction" method="execute">
+            <result name="success">/index.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <!-- 'altGeneralCouncil' action leads to the view provided by altGeneralCouncil.jsp if connected to RMIServer
+        or leads to the view provided by index.jsp if something goes wrong-->
+        <action name="altGeneralCouncil" class="hey.action.LoadInfoAction" method="execute">
+            <result name="success">/altGeneralCouncil.jsp</result>
+            <result name="error">/index.jsp</result>
+        </action>
+
+        <!-- 'altGeneralCouncilAction' action leads to the view provided by index.jsp if election is altered successfully
+        or leads to the view provided by error.jsp if something goes wrong-->
+        <action name="altGeneralCouncilAction" class="hey.action.AltGeneralCEAction" method="execute">
+            <result name="success">/index.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <!-- 'button4' action leads to the view provided by listElections.jsp if connected to RMIServer
+         or leads to the view provided by error.jsp if something goes wrong-->
+        <action name="button4" class="hey.action.LoadInfoAction" method="execute">
+            <result name="success">/listElections.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <!-- 'consultElectionsAction' action leads to the view provided by listElections.jsp if connected to RMIServer
+        or leads to the view provided by error.jsp if something goes wrong-->
+        <action name="consultElectionsAction" class="hey.action.LoadElectionsAction" method="execute">
+            <result name="success">listElections.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <!-- 'button5' action leads to the view provided by login.jsp-->
+        <action name="button5" class="hey.action.LoadInfoAction" method="execute">
+            <result>/login.jsp</result>
+        </action>
+
+        <!-- 'login' action leads to the view provided by vote.jsp if user successfully logged in
+        or leads to the view provided by register.jsp if it is not registered-->
+        <action name="login" class="hey.action.LoginAction" method="execute">
+            <result name="success">/vote.jsp</result>
+            <result name="error">/register.jsp</result>
+        </action>
+
+        <!-- 'govote' action leads to the view provided by vote.jsp-->
+        <action name="govote" class="hey.action.LoadInfoAction" method="execute">
+            <result>/vote.jsp</result>
+        </action>
+
+        <!-- 'fb' action leads to the view provided by authFB.jsp if connected to api
+        or leads to the view provided by index.jsp if something goes wrong-->
+        <action name="fb" class="hey.action.LoginFB" method="execute">
+            <result name="success">/authFB.jsp</result>
+            <result name="error">/index.jsp</result>
+        </action>
+
+        <!-- 'authFB' action leads to the view provided by vote.jsp if connected to facebook
+        or leads to the view provided by index.jsp if it is not registered-->
+        <action name="authFB" class="hey.action.AuthFB" method="execute">
+            <result name="success">/vote.jsp</result>
+            <result name="error">/index.jsp</result>
+        </action>
+
+        <!-- 'listelections' action leads to the view provided by index.jsp if user successfully voted
+        or leads to the view provided by vote.jsp if some piece of information is wrong or leads to
+        the view provided by error.jsp if something goes wrong-->
+        <action name="listelections" class="hey.action.VoteAction" method="execute">
+            <result name="success">/index.jsp</result>
+            <result name="login">/vote.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <!-- 'button6' action leads to the view provided by pastElections.jsp-->
+        <action name="button6" class="hey.action.LoadInfoAction" method="execute">
+            <result>/pastElections.jsp</result>
+        </action>
+
+        <!-- 'pastElectionsAction' action leads to the view provided by pastElections.jsp to show past elections
+        or leads to the view provided by error.jsp if if something goes wrong-->
+        <action name="pastElectionsAction" class="hey.action.PastElectionsAction" method="execute">
+            <result name="success">/pastElections.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <!-- 'button7' action leads to the view provided by candidateList.jsp-->
+        <action name="button7" class="hey.action.LoadInfoAction" method="execute">
+            <result>/candidateList.jsp</result>
+        </action>
+
+        <!-- 'candidateList' action leads to the view provided by index.jsp if candidate is successfully added
+        or leads to the view provided by error.jsp if if something goes wrong-->
+        <action name="candidateList" class="hey.action.CandidateListAction" method="execute">
+            <result name="success">/index.jsp</result>
+            <result name="error">/candidateList.jsp</result>
+        </action>
+
+        <action name="button8" class="hey.action.LoadInfoAction" method="execute">
+            <result>/creatTables.jsp</result>
+        </action>
+
+        <!-- 'candidateList' action leads to the view provided by index.jsp if candidate is successfully added
+        or leads to the view provided by error.jsp if if something goes wrong-->
+        <action name="tables" class="hey.action.tableAction" method="execute">
+            <result name="success">/index.jsp</result>
+            <result name="error">/creatTables.jsp</result>
+        </action>
+
+    </package>
+</struts>
