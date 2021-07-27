@@ -325,8 +325,8 @@ public class RMIServer extends UnicastRemoteObject implements RMIInterface{
     public String addFacebook() throws RemoteException{
 
         Token EMPTY_TOKEN = null;
-        String apiKey = "516348146069779";
-        String apiSecret = "4122fd02b55653dad8dd0e80f84c0cce";
+        String apiKey = "***************";
+        String apiSecret = "********************************";
 
         service = new ServiceBuilder()
                 .provider(FacebookApi2.class)
